@@ -7,7 +7,9 @@ import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -108,27 +110,29 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             } catch (JSONException e) {
                 e.printStackTrace ();
             }
-            //return jsonResults;
             return null;
         }
 
         @Override
         protected void onPostExecute(Void result){
             super.onPostExecute (result);
-            MovieAdapter adapter = new MovieAdapter (MainActivity.this, movies);
-            // GridView
-            GridView gridView = findViewById (id.movies_gridview);
-            gridView.setAdapter (adapter);
+            // make sure Movies are not Null before instantiate the adapter.
+            if (movies != null ){
+                MovieAdapter adapter = new MovieAdapter (MainActivity.this, movies);
+                // GridView
+                GridView gridView = findViewById (id.movies_gridview);
+                gridView.setAdapter (adapter);
+                //click listener
+                gridView.setOnItemClickListener (new AdapterView.OnItemClickListener () {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                        // make a parcelables and pass it
+                        Movie movie = (Movie) adapterView.getItemAtPosition(position);
+                        launchMovieDetailActivity(movie);
+                    }
+                });
 
-            //click listener
-            gridView.setOnItemClickListener (new AdapterView.OnItemClickListener () {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                    // make a parcelables and pass it
-                    Movie movie = (Movie) adapterView.getItemAtPosition(position);
-                    launchMovieDetailActivity(movie);
-                }
-            });
+            }
         }
     }
 

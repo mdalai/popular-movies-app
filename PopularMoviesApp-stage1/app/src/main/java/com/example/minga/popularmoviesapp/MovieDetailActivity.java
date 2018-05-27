@@ -15,9 +15,6 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 
 public class MovieDetailActivity extends AppCompatActivity {
-    //public static final String EXTRA_POSITION = "extra_position";
-    //private static final int DEFAULT_POSITION = -1;
-
     private TextView overviewTv;
     private TextView titleTv;
     private TextView originalTitleTV;
@@ -42,13 +39,6 @@ public class MovieDetailActivity extends AppCompatActivity {
             return;
         }
 
-        /*int position = intent.getIntExtra(EXTRA_POSITION, DEFAULT_POSITION);
-        if (position == DEFAULT_POSITION) {
-            // EXTRA_POSITION not found in intent
-            closeOnError();
-            return;
-        }*/
-
         // get the Movie parcelable
         Bundle data = intent.getExtras ();
         Movie movie = (Movie ) data.getParcelable ("movie");
@@ -67,8 +57,6 @@ public class MovieDetailActivity extends AppCompatActivity {
                 .fit ().centerInside ()
                 .into (thumbnailIv);
         setTitle (movie.getMovieTitle ());
-
-
     }
 
     private void closeOnError() {
@@ -82,7 +70,5 @@ public class MovieDetailActivity extends AppCompatActivity {
         voteAverageTv.setText (String.valueOf (movie.getVoteAverage ()));
         releaseDateTv.setText (movie.getReleaseDate ());
         overviewTv.setText (movie.getOverview ());
-
-        //Toast.makeText (this, movieDetail.getImage (), Toast.LENGTH_SHORT).show ();
     }
 }

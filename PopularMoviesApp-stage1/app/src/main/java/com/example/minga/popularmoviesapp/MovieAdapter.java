@@ -1,6 +1,7 @@
 package com.example.minga.popularmoviesapp;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,12 +18,10 @@ import java.util.ArrayList;
  * Created by minga on 5/7/2018.
  */
 
+
+
 public class MovieAdapter extends ArrayAdapter<Movie> {
     private static final String LOG_TAG= MovieAdapter.class.getSimpleName();
-    /*
-    public MovieAdapter(Activity context, List<MovieAdapter> movies) {
-        super (context, 0, movies);
-    } */
 
     public MovieAdapter(Context context, ArrayList<Movie> movies){
         super(context,0,movies);

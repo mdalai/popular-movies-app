@@ -37,23 +37,6 @@ public class JsonUtils {
             movies.add (new Movie (title, BASE_URL_IMG + posterUrl, popularity,
                     originalTitle,overview,voteAverage,releaseDate,BASE_URL_THUMBNAIL+posterUrl));
         }
-
-        //Log.d ("jsonParsePrint",movies.get(10).getMovieTitle() +" | "+ movies.get(10).getImageUrl());
-
        return movies;
-
-    }
-    public static MovieDetail parseMoiveDetialJson(String json) throws JSONException {
-        JSONObject jObj = new JSONObject(json);
-        String moviename = jObj.getString ("moviename");
-        String overview = jObj.getString ("overview");
-        String novel = jObj.getString("novel");
-        String screenplay = jObj.getString("screenplay");
-        String director = jObj.getString("director");
-        String image = jObj.getString("image");
-
-        MovieDetail movieDetail = new MovieDetail(moviename,overview,novel,screenplay,director,image);
-
-        return movieDetail;
     }
 }
