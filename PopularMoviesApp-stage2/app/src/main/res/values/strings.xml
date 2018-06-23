@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">Popular Movies App</string>
+
+    <!-- Movie Detail Activity -->
+    <string name="movie_overview">Overview:</string>
+    <string name="movie_original_title">Original Title:</string>
+    <string name="movie_detail_screenplay_label">Screenplay:</string>
+    <string name="movie_detail_director_label">Director:</string>
+
+    <!-- Error messages-->
+    <string name="detail_error_message">Movie detail is not available</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!--  Dispaly type List Preference  -->
+    <!-- Labels -->
+    <string name="display_type_label">Display Type</string>
+    <string name="display_type_popularity_label">By Popularity</string>
+    <string name="display_type_top_rated_label">By Top Rated</string>
+    <string name="display_type_favorite_label">By Favorite</string>
+    <!-- Key -->
+    <string name="display_type_key" translatable="false">display_type</string>
+    <!-- Values -->
+    <string name="display_type_popularity_value" translatable="false">1</string>
+    <string name="display_type_top_rated_value" translatable="false">2</string>
+    <string name="display_type_favorite_value" translatable="false">3</string>
+
+    <!-- movie list
+    <string-array name="movie_names">
+        <item>Fifty Shades Freed</item>
+        <item>Avengers: Infinity War</item>
+        <item>Zootopia</item>
+        <item>Rampage</item>
+        <item>Thor: Ragnarok</item>
+        <item>Coco</item>
+        <item>Guardians of the Galaxy</item>
+        <item>Black Panther</item>
+        <item>The Avengers</item>
+        <item>Beauty and the Beast</item>
+    </string-array> -->
+
+    <!-- movie detail json
+    <string-array name="movie_details">
+    <item>{\"moviename\":\"Fifty Shades Freed\",\"overview\":\"Believing they have left behind shadowy figures from their past,
+        newlyweds Christian and Ana fully embrace an inextricable connection and shared life of luxury.
+        But just as she steps into her role as Mrs. Grey and he relaxes into an unfamiliar stability,
+        new threats could jeopardize their happy ending before it even begins.\",
+        \"novel\":\"E.L. James\",\"screenplay\":\"Niall Leonard\",\"director\":\"James Foley\",
+        \"image\":\"https://image.tmdb.org/t/p/w600_and_h900_bestv2/3J4GrilAP2D0NbRIC7sDxqSRFnf.jpg\"}
+    </item>
+    </string-array>   -->
+</resources>
