@@ -66,11 +66,8 @@ public class MovieDetailActivity extends AppCompatActivity {
 
     private String displayType;
 
-    // ********** RecyclerView *****************************************************************
-    //RecyclerView rvTrailers;
-    //TrailersAdapter rvAdapter;
-    //LinearLayoutManager rvTrailerLayoutManager;
-    // ********** RecyclerView *****************************************************************
+    public static final String BTN_TXT_UNMARK = "UN-MARK from Favorite List";
+    public static final String BTN_TXT_MARK = "MARK AS FAVORITE";
 
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager
@@ -109,9 +106,9 @@ public class MovieDetailActivity extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable Movie movie) {
                 if(movie!=null){
-                    mButton.setText ("UN-MARK from Favorite List");
+                    mButton.setText (BTN_TXT_UNMARK);
                 } else {
-                    mButton.setText ("MARK AS FAVORITE");
+                    mButton.setText (BTN_TXT_MARK);
                 }
             }
         });
@@ -145,18 +142,10 @@ public class MovieDetailActivity extends AppCompatActivity {
                 .into (thumbnailIv);
         setTitle (movie.getMovieTitle ());
 
-        // ********** RecyclerView Setup ***********************************************************
-        //rvTrailers = (RecyclerView) findViewById (R.id.trailer_rv);
-        //rvTrailers.setLayoutManager (new LinearLayoutManager (this));
-        //rvAdapter = new TrailersAdapter (getApplicationContext (),trailers);
-        //rvTrailers.setAdapter (rvAdapter);
-        // ********** RecyclerView *****************************************************************
-
         // if it is online mode, populate the trailer and review.
         if (isNetworkAvailable()){
             populateUITrailerReview(movie.getMovieId ());
         }
-
 
     }
 
@@ -191,14 +180,12 @@ public class MovieDetailActivity extends AppCompatActivity {
 
 
     public void onFavoriteButtonClicked(final Movie movie){
-        //Log.d ("Print::--", mButton.getText().toString ());
 
-        if(mButton.getText().toString().equals ("UN-MARK from Favorite List")){
+        if(mButton.getText().toString().equals (BTN_TXT_UNMARK)){
             AppExecutors.getsInstance ().diskIO ().execute (new Runnable () {
                 @Override
                 public void run() {
                     mDb.favoriteMovieDao ().deleteMovie (movie);
-                    finish ();
                 }
             });
 
@@ -211,7 +198,6 @@ public class MovieDetailActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     mDb.favoriteMovieDao ().insertMovie (movie);
-                    finish ();
                 }
             });
 
@@ -257,23 +243,16 @@ public class MovieDetailActivity extends AppCompatActivity {
 
             // make sure Trailer are not Null before instantiate the adapter.
             if ( !trailers.isEmpty() || trailers !=null) {
-                // ********** RecyclerView *****************************************************************
-                //rvAdapter = new TrailersAdapter (trailers);
-                //rvAdapter.notifyDataSetChanged ();
-                // ********** RecyclerView *****************************************************************
 
                 TrailerAdapter adapter = new TrailerAdapter (MovieDetailActivity.this, trailers);
                 // ListView
                 ListView listView = (ListView )findViewById (R.id.trailers_listview);
-                setListViewHeightBasedOnChildren(listView);
-
                 listView.setAdapter (adapter);
                 //click listener
                 listView.setOnItemClickListener (new AdapterView.OnItemClickListener () {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                         Trailer trailer = (Trailer) adapterView.getItemAtPosition(position);
-                        //Log.d ("TrailerId Print: ", trailer.getYoutubeId ());
                         // context
                         Context context = MovieDetailActivity.this;
                         openTrailerVideo (context, trailer.getYoutubeId ());
@@ -287,7 +266,6 @@ public class MovieDetailActivity extends AppCompatActivity {
                 ReviewAdapter adapter = new ReviewAdapter (MovieDetailActivity.this, reviews);
                 // ListView
                 ListView listView = findViewById (R.id.reviews_listview);
-                setListViewHeightBasedOnChildren(listView);
                 listView.setAdapter (adapter);
                 //click listener
 
@@ -349,27 +327,4 @@ public class MovieDetailActivity extends AppCompatActivity {
     }
 
 
-    /**** Method for Setting the Height of the ListView dynamically.
-     **** Hack to fix the issue of not showing all the items of the ListView
-     **** when placed inside a ScrollView  ****/
-    public static void setListViewHeightBasedOnChildren(ListView listView) {
-        ListAdapter listAdapter = listView.getAdapter();
-        if (listAdapter == null)
-            return;
-
-        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.UNSPECIFIED);
-        int totalHeight = 0;
-        View view = null;
-        for (int i = 0; i < listAdapter.getCount(); i++) {
-            view = listAdapter.getView(i, view, listView);
-            if (i == 0)
-                view.setLayoutParams(new ViewGroup.LayoutParams(desiredWidth, ViewGroup.LayoutParams.WRAP_CONTENT));
-
-            view.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
-            totalHeight += view.getMeasuredHeight();
-        }
-        ViewGroup.LayoutParams params = listView.getLayoutParams();
-        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
-        listView.setLayoutParams(params);
-    }
 }

@@ -19,17 +19,14 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
-import com.example.minga.popularmoviesapp.adapter.FavoriteMovieAdapter;
 import com.example.minga.popularmoviesapp.adapter.MovieAdapter;
 import com.example.minga.popularmoviesapp.database.AppDatabase;
-import com.example.minga.popularmoviesapp.database.FavoriteMovie;
 import com.example.minga.popularmoviesapp.model.Movie;
 import com.example.minga.popularmoviesapp.utils.JsonUtils;
 import com.example.minga.popularmoviesapp.utils.NetworkUtils;
 
 import org.json.JSONException;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -39,12 +36,15 @@ import static com.example.minga.popularmoviesapp.R.*;
 
 public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener{
     ArrayList<Movie> movies;
-    String apiType = "1";
+    String apiType =   "1";
     URL apiUrl;
 
     private AppDatabase mDb;
 
     private static final String LOG_TAG = MainActivity.class.getSimpleName ();
+    public static final String KEY_MOVIE = "movie";
+
+    public GridView gridView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         createMoviePosters(apiType);
         // register the Listener
         sharedPreferences.registerOnSharedPreferenceChangeListener (this);
+
     }
 
     public void createMoviePosters(String apiType){
@@ -108,7 +109,6 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if(key.equals (getString (R.string.display_type_key))){
             apiType = sharedPreferences.getString (key, getString (R.string.display_type_popularity_value));
-            Log.d ("Print: ",apiType);
             createMoviePosters(apiType);
         }
     }
@@ -143,8 +143,9 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             if (movies != null ){
                 MovieAdapter adapter = new MovieAdapter (MainActivity.this, movies);
                 // GridView
-                GridView gridView = findViewById (id.movies_gridview);
+                gridView = findViewById (id.movies_gridview);
                 gridView.setAdapter (adapter);
+
                 //click listener
                 gridView.setOnItemClickListener (new AdapterView.OnItemClickListener () {
                     @Override
@@ -166,8 +167,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         Class destinationActivity = MovieDetailActivity.class;
         Intent intent = new Intent(context, destinationActivity);
         // passing data into child activity.
-        //intent.putExtra (MovieDetailActivity.EXTRA_POSITION, movie);
-        intent.putExtra ("movie", movie);
+        intent.putExtra (KEY_MOVIE, movie);
         startActivity (intent);
     }
 
@@ -178,9 +178,8 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             @Override
             public void onChanged(@Nullable List<Movie> movies) {
                 Log.d (LOG_TAG,"Receiving Database update");
-
                 // to keep the popular moves and top rated movies when it is marked as favorite
-                if (apiType.equals ("3")) {
+                if (apiType.equals ("3")){
                     MovieAdapter adapter = new MovieAdapter (MainActivity.this, ( ArrayList<Movie> ) movies);
                     // GridView
                     GridView gridView = findViewById (id.movies_gridview);

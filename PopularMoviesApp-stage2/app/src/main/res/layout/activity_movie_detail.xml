@@ -4,12 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.minga.popularmoviesapp.MovieDetailActivity"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+    android:layout_height="wrap_content"    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
             <TextView
                 android:id="@+id/title_tv"
                 android:layout_width="match_parent"
@@ -97,46 +96,53 @@
                     android:layout_height="1dp"
                     android:background="@android:color/darker_gray" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Trailers:"
-                android:textStyle="bold" />
-
-
-            <ListView xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:id="@+id/trailers_listview"
+            <android.support.v4.widget.NestedScrollView
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                 >
-            </ListView>
-            <!--
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/trailer_rv"
-                android:layout_width="0dp"
-                android:layout_height="50dp" />
+                android:layout_height="300dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-            <View android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray" /> -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Trailers:"
+                        android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Reviews:"
-                android:textStyle="bold" />
+                    <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:tools="http://schemas.android.com/tools"
+                        android:id="@+id/trailers_listview"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        >
+                    </ListView>
 
-            <ListView xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:id="@+id/reviews_listview"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:stretchMode="columnWidth" >
-            </ListView>
+                    <View android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@android:color/darker_gray" />
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Reviews:"
+                        android:textStyle="bold" />
 
+                    <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:tools="http://schemas.android.com/tools"
+                        android:id="@+id/reviews_listview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:stretchMode="columnWidth"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin">
+                    </ListView>
 
-        </LinearLayout>
-    </ScrollView>
+                </LinearLayout>
+            </android.support.v4.widget.NestedScrollView>
+
+    </LinearLayout>
+</ScrollView>
 

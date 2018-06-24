@@ -34,7 +34,7 @@ public class ReviewAdapter extends ArrayAdapter<Review> {
         }
 
         TextView authorTv = (TextView ) convertView.findViewById(R.id.author_tv);
-        authorTv.setText (review.getAuthor ());
+        authorTv.setText (review.getAuthor () + "  wrote:");
         TextView contentTv = (TextView ) convertView.findViewById(R.id.content_tv);
         contentTv.setText(review.getContent ());
 

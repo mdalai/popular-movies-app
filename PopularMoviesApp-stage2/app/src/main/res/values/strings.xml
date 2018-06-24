@@ -25,28 +25,4 @@
     <string name="display_type_top_rated_value" translatable="false">2</string>
     <string name="display_type_favorite_value" translatable="false">3</string>
 
-    <!-- movie list
-    <string-array name="movie_names">
-        <item>Fifty Shades Freed</item>
-        <item>Avengers: Infinity War</item>
-        <item>Zootopia</item>
-        <item>Rampage</item>
-        <item>Thor: Ragnarok</item>
-        <item>Coco</item>
-        <item>Guardians of the Galaxy</item>
-        <item>Black Panther</item>
-        <item>The Avengers</item>
-        <item>Beauty and the Beast</item>
-    </string-array> -->
-
-    <!-- movie detail json
-    <string-array name="movie_details">
-    <item>{\"moviename\":\"Fifty Shades Freed\",\"overview\":\"Believing they have left behind shadowy figures from their past,
-        newlyweds Christian and Ana fully embrace an inextricable connection and shared life of luxury.
-        But just as she steps into her role as Mrs. Grey and he relaxes into an unfamiliar stability,
-        new threats could jeopardize their happy ending before it even begins.\",
-        \"novel\":\"E.L. James\",\"screenplay\":\"Niall Leonard\",\"director\":\"James Foley\",
-        \"image\":\"https://image.tmdb.org/t/p/w600_and_h900_bestv2/3J4GrilAP2D0NbRIC7sDxqSRFnf.jpg\"}
-    </item>
-    </string-array>   -->
 </resources>

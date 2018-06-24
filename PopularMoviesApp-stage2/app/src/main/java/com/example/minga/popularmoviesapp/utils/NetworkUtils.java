@@ -4,7 +4,9 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.util.Log;
 
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -17,7 +19,7 @@ import java.util.Scanner;
  */
 
 public class NetworkUtils {
-    final static String KEY = "3f29784737416bf3bc6362b1dda46c31";
+    final static String KEY = "API-KEY";
     final static String API_URL_POPULAR = "http://api.themoviedb.org/3/movie/popular?api_key="+KEY;
     final static String API_URL_TOP_RATED = "http://api.themoviedb.org/3/movie/top_rated?api_key="+KEY;
     private static String API_URL;
@@ -85,6 +87,37 @@ public class NetworkUtils {
             urlConnection.disconnect ();
         }
     }
+
+    // check if URL is available
+    public static boolean isUrlAvailable() {
+        boolean available = false;
+        String web_url = "https://www.themoviedb.org/";
+        //Uri uri = Uri.parse (web_url).buildUpon ().build ();
+        URL url;
+        HttpURLConnection connection = null;
+        try {
+            //url = new URL (uri.toString ());
+            url = new URL(web_url);
+            connection = (HttpURLConnection) url.openConnection ();
+            int code = connection.getResponseCode ();
+            Log.d ("Print 2", String.valueOf (code));
+            if (code == 200) {
+                available = true;
+            } else {
+            }
+        } catch (MalformedURLException e) {
+            Log.d ("Print 1","Hello");
+            e.printStackTrace ();
+        } catch (EOFException e){
+            Log.d ("Print 3","Hello");
+            e.printStackTrace ();
+        } catch (IOException e) {
+            e.printStackTrace ();
+        }
+
+        return available;
+    }
+
 
 
 }
