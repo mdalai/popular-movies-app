@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Popular Movies App</string>
+
+    <!-- Movie Detail Activity -->
+    <string name="movie_overview">Overview:</string>
+    <string name="movie_original_title">Original Title:</string>
+    <string name="movie_detail_screenplay_label">Screenplay:</string>
+    <string name="movie_detail_director_label">Director:</string>
+
+    <!-- Error messages-->
+    <string name="detail_error_message">Movie detail is not available</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!--  Dispaly type List Preference  -->
+    <!-- Labels -->
+    <string name="display_type_label">Display Type</string>
+    <string name="display_type_popularity_label">By Popularity</string>
+    <string name="display_type_top_rated_label">By Top Rated</string>
+    <string name="display_type_favorite_label">By Favorite</string>
+    <!-- Key -->
+    <string name="display_type_key" translatable="false">display_type</string>
+    <!-- Values -->
+    <string name="display_type_popularity_value" translatable="false">1</string>
+    <string name="display_type_top_rated_value" translatable="false">2</string>
+    <string name="display_type_favorite_value" translatable="false">3</string>
+
+</resources>
